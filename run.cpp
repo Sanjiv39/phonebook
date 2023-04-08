@@ -1200,7 +1200,23 @@ void show()
 // shows all records
 void showall()
 {
-    
+    load();
+    fflush(stdin);
+    fflush(stdout);
+    system("cls");
+    int id;
+    liner(4);
+    gotoxy(5, 5);
+    cout<<"ID";
+    gotoxy(15, 5);
+    cout<<"First name";
+    gotoxy(35, 5);
+    cout<<"Last name";
+    gotoxy(55, 5);
+    cout<<"Phone number";
+    gotoxy(75, 5);
+    cout<<"Place";
+    liner(6);
 }
 
 // THE UPDATE MENU
