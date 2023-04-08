@@ -80,6 +80,11 @@ void color(string str)
     {
         system("Color 57");
     }
+    else if (str.compare("yellow") == 0)
+    {
+        system("Color 60");
+    }
+
 }
 void load()
 {
@@ -1204,19 +1209,56 @@ void showall()
     fflush(stdin);
     fflush(stdout);
     system("cls");
+    color("yellow");
     int id;
     liner(4);
     gotoxy(5, 5);
-    cout<<"ID";
+    cout << "ID";
     gotoxy(15, 5);
-    cout<<"First name";
+    cout << "First name";
     gotoxy(35, 5);
-    cout<<"Last name";
+    cout << "Last name";
     gotoxy(55, 5);
-    cout<<"Phone number";
+    cout << "Phone number";
     gotoxy(75, 5);
-    cout<<"Place";
+    cout << "Place";
     liner(6);
+    int y = 7;
+    fstream rfile("temp.txt", ios::in);
+    char read[100], skip[100];
+    int i = 1;
+    while (!rfile.eof())
+    {
+
+        if (i < getlines("temp.txt"))
+        {
+            y = y + 2;
+            rfile >> read;
+            gotoxy(5, y);
+            cout << read;
+            rfile >> read;
+             gotoxy(16, y);
+            cout << read;
+            rfile >> read;
+            gotoxy(36, y);
+            cout << read;
+            rfile >> read;
+            gotoxy(56, y);
+            cout << read;
+            rfile >> read;
+            gotoxy(76, y);
+            cout << read;
+            y = y + 2;
+            liner(y);
+        }
+        else
+        {
+            rfile >> skip;
+        }
+        i++; // line
+    }
+    // cout<<"Out";
+    rfile.close();
 }
 
 // THE UPDATE MENU
