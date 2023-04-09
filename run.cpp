@@ -1288,13 +1288,13 @@ void showall()
     cout << "Place";
     liner(6);
     int y = 7;
-    fstream rfile("temp.txt", ios::in);
+    fstream rfile("main.txt", ios::in);
     char read[100], skip[100];
     int i = 1;
     while (!rfile.eof())
     {
 
-        if (i < getlines("temp.txt"))
+        if (i < getlines("main.txt"))
         {
             y = y + 2;
             rfile >> read;
