@@ -55,7 +55,7 @@ void exit()
 void liner(int y)
 {
     int x = 0;
-    while (x != 108)
+    while (x != 115)
     {
         gotoxy(x, y);
         cout << "=";
