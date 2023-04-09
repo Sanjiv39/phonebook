@@ -475,7 +475,7 @@ void back(function<void()> func)
     color("aqua");
     string c;
     cout << "\n\n\t\tWant to repeat?";
-    cout << "\n\n\t\tEnter y or Y for yes || any other for back to main menu: ";
+    cout << "\n\n\t\tEnter y or Y for yes || any other for back to main menu......also hit ENTER <---: ";
     getline(cin, c, '\n');
     Sleep(1000);
     if (c == "y" || c == "Y")
