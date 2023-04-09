@@ -931,7 +931,7 @@ void upphone()
                 Sleep(3000);
                 upphone();
             }
-            else if (phone.length() != 10)
+            else if (name.length() != 10)
             {
                 color("red");
                 gotoxy(10, 22);
@@ -940,7 +940,7 @@ void upphone()
                 Sleep(3000);
                 upphone();
             }
-            else if (checknumber(phone) == 1)
+            else if (checknumber(name) == 1)
             {
                 color("red");
                 gotoxy(10, 22);
