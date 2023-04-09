@@ -1495,8 +1495,8 @@ int main()
     // system("Color 75");
     // cout<<str;
     // load();
-    // menu();
-    back(&update);
+    menu();
+    // back(&update);
     // checkforid("55");
     // getid();
     // char c[100] = "Th";
