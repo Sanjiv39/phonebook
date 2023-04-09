@@ -25,10 +25,22 @@ public:
     ~contact() {}
 };
 
+// pre declare all functions
 void gotoxy(int, int);
 void liner(int);
 void menu();
 void color(string);
+void menu();
+void update();
+void upfname();
+void uplname();
+void upphone();
+void upplace();
+void add();
+void del();
+void show();
+void showall();
+
 void exit()
 {
     system("cls");
@@ -84,8 +96,8 @@ void color(string str)
     {
         system("Color 60");
     }
-
 }
+
 void load()
 {
     int a = 4, b = 5, c = 14, d = 7;
@@ -111,6 +123,7 @@ void load()
         count++;
     }
 }
+
 // goto particular coordinatw
 void gotoxy(int x, int y)
 {
@@ -291,6 +304,7 @@ int getlines(string str)
     // cout<<x;
     return x + 1;
 }
+
 // this will copy from main to temp
 void createtemp(int id, int col, string str)
 {
@@ -409,6 +423,7 @@ void skip(int id)
     rfile.close();
     wtemp.close();
 }
+
 // this will copy from temp to main
 void storefile()
 {
@@ -437,6 +452,25 @@ void storefile()
     // cout<<"Out";
     rtemp.close();
     wfile.close();
+}
+
+// this functions decides at the last
+void back(function<void()> func)
+{
+    color("aqua");
+    string c;
+    cout << "\n\n\t\tWant to repeat?";
+    cout << "\n\n\t\tEnter y or Y for yes || any other for back to main menu: ";
+    getline(cin, c, '\n');
+    Sleep(1000);
+    if (c == "y" || c == "Y")
+    {
+        func();
+    }
+    else
+    {
+        menu();
+    }
 }
 
 // ADD A NEW CONTACT ---------------------------------------------------------------------------------
@@ -598,24 +632,7 @@ void add()
                                     fflush(stdin);
                                     Sleep(3000);
                                     // option
-                                    color("aqua");
-                                    char c;
-                                    gotoxy(10, 21);
-                                    cout << "Want to add another contact?";
-                                    gotoxy(10, 22);
-                                    cout << "Enter y or Y for yes || any other for back to main menu: ";
-                                    cin >> c;
-                                    while (getchar() != '\n')
-                                        ;
-                                    Sleep(3000);
-                                    if (c == 'y' || c == 'Y')
-                                    {
-                                        add();
-                                    }
-                                    else
-                                    {
-                                        menu();
-                                    }
+                                    back(&add);
                                 }
                             }
                         }
@@ -720,26 +737,9 @@ void upfname()
                 // createtemp(id, 3, name2);
                 // storefile();
                 // fflush(stdin);
-                Sleep(3000);
+                Sleep(1000);
                 // option
-                color("aqua");
-                char c;
-                gotoxy(10, 21);
-                cout << "Want to update another contact?";
-                gotoxy(10, 22);
-                cout << "Enter y or Y for yes || any other for back to main menu: ";
-                cin >> c;
-                while (getchar() != '\n')
-                    ;
-                Sleep(3000);
-                if (c == 'y' || c == 'Y')
-                {
-                    update();
-                }
-                else
-                {
-                    menu();
-                }
+                back(&upfname);
             }
         }
     }
@@ -836,26 +836,9 @@ void uplname()
                 // createtemp(id, 3, name2);
                 // storefile();
                 // fflush(stdin);
-                Sleep(3000);
+                Sleep(1000);
                 // option
-                color("aqua");
-                char c;
-                gotoxy(10, 21);
-                cout << "Want to update another contact?";
-                gotoxy(10, 22);
-                cout << "Enter y or Y for yes || any other for back to main menu: ";
-                cin >> c;
-                while (getchar() != '\n')
-                    ;
-                Sleep(3000);
-                if (c == 'y' || c == 'Y')
-                {
-                    update();
-                }
-                else
-                {
-                    menu();
-                }
+                back(&uplname);
             }
         }
     }
@@ -971,26 +954,9 @@ void upphone()
                 // createtemp(id, 3, name2);
                 // storefile();
                 // fflush(stdin);
-                Sleep(3000);
+                Sleep(1000);
                 // option
-                color("aqua");
-                char c;
-                gotoxy(10, 21);
-                cout << "Want to update another contact?";
-                gotoxy(10, 22);
-                cout << "Enter y or Y for yes || any other for back to main menu: ";
-                cin >> c;
-                while (getchar() != '\n')
-                    ;
-                Sleep(3000);
-                if (c == 'y' || c == 'Y')
-                {
-                    update();
-                }
-                else
-                {
-                    menu();
-                }
+                back(&upphone);
             }
         }
     }
@@ -1087,26 +1053,9 @@ void upplace()
                 // createtemp(id, 3, name2);
                 // storefile();
                 // fflush(stdin);
-                Sleep(3000);
+                Sleep(1000);
                 // option
-                color("aqua");
-                char c;
-                gotoxy(10, 21);
-                cout << "Want to update another contact?";
-                gotoxy(10, 22);
-                cout << "Enter y or Y for yes || any other for back to main menu: ";
-                cin >> c;
-                while (getchar() != '\n')
-                    ;
-                Sleep(3000);
-                if (c == 'y' || c == 'Y')
-                {
-                    update();
-                }
-                else
-                {
-                    menu();
-                }
+                back(&upplace);
             }
         }
     }
@@ -1176,30 +1125,129 @@ void del()
         // fflush(stdin);
         Sleep(3000);
         // option
-        color("aqua");
-        char c;
-        gotoxy(10, 21);
-        cout << "Want to delete another contact?";
-        gotoxy(10, 22);
-        cout << "Enter y or Y for yes || any other for back to main menu: ";
-        cin >> c;
-        while (getchar() != '\n')
-            ;
-        Sleep(3000);
-        if (c == 'y' || c == 'Y')
-        {
-            del();
-        }
-        else
-        {
-            menu();
-        }
+        back(&del);
     }
 }
 
 // shows a record
 void show()
 {
+    load();
+    system("cls");
+    string phone = "";
+    color("blue");
+    liner(6);
+    gotoxy(10, 7);
+    cout << "You are searching a contact......";
+    liner(8);
+    gotoxy(15, 10);
+    // Enter the phone number
+    cout << "Enter phone number : ";
+    getline(cin, phone, '\n');
+    fflush(stdin);
+    if (checkdigit(phone) == 0)
+    {
+        color("red");
+        gotoxy(10, 22);
+        cout << "Enter only digits";
+        phone = "";
+        Sleep(3000);
+        del();
+    }
+    else if (phone.length() != 10)
+    {
+        color("red");
+        gotoxy(10, 22);
+        cout << "Enter 10 digits only";
+        phone = "";
+        Sleep(3000);
+        del();
+    }
+    else if (checknumber(phone) == 0)
+    {
+        color("red");
+        gotoxy(10, 22);
+        cout << "Number does not exists";
+        phone = "";
+        Sleep(3000);
+        del();
+    }
+    else
+    {
+        // while ((getchar()) != '\n');
+        // Now enter new last name
+        // while ((getchar()) !='\n');
+        phone = trim(phone);
+        int id = checkforid(phone);
+        fstream rfile("main.txt", ios::in);
+        char read[100], skip[100];
+        int i = 1;
+        system("cls");
+        color("yellow");
+        liner(8);
+        gotoxy(20, 10);
+        cout << "Contact Details";
+        liner(12);
+        while (!rfile.eof())
+        {
+            if (i < getlines("main.txt"))
+            {
+                if (i == id)
+                {
+                    rfile >> read;
+                    gotoxy(10, 15);
+                    cout << "Contact id";
+                    gotoxy(30, 15);
+                    cout << ":";
+                    gotoxy(35, 15);
+                    cout << read;
+                    rfile >> read;
+                    gotoxy(10, 17);
+                    cout << "First name";
+                    gotoxy(30, 17);
+                    cout << ":";
+                    gotoxy(35, 17);
+                    cout << read;
+                    rfile >> read;
+                    gotoxy(10, 19);
+                    cout << "Last name";
+                    gotoxy(30, 19);
+                    cout << ":";
+                    gotoxy(35, 19);
+                    cout << read;
+                    rfile >> read;
+                    gotoxy(10, 21);
+                    cout << "Phone number";
+                    gotoxy(30, 21);
+                    cout << ":";
+                    gotoxy(35, 21);
+                    cout << read;
+                    rfile >> read;
+                    gotoxy(10, 23);
+                    cout << "Place";
+                    gotoxy(30, 23);
+                    cout << ":";
+                    gotoxy(35, 23);
+                    cout << read;
+                }
+                else
+                {
+                    for (int j = 1; j <= 5; j++)
+                    {
+                        rfile >> skip;
+                    }
+                }
+            }
+            else
+            {
+                rfile >> skip;
+            }
+            i++; // line
+        }
+        rfile.close();
+        // option
+        back(&show);
+    }
 }
 
 // shows all records
@@ -1237,7 +1285,7 @@ void showall()
             gotoxy(5, y);
             cout << read;
             rfile >> read;
-             gotoxy(16, y);
+            gotoxy(16, y);
             cout << read;
             rfile >> read;
             gotoxy(36, y);
@@ -1259,11 +1307,14 @@ void showall()
     }
     // cout<<"Out";
     rfile.close();
+    //option
+    back(&showall);
 }
 
 // THE UPDATE MENU
 void update()
 {
+    load();
     system("cls");
     color("blue");
     liner(4);
@@ -1352,8 +1403,11 @@ void update()
         }
     }
 }
+
+// THE MAIN MENU
 void menu()
 {
+    load();
     system("cls");
     color("blue");
     liner(4);
@@ -1441,7 +1495,8 @@ int main()
     // system("Color 75");
     // cout<<str;
     // load();
-    menu();
+    // menu();
+    back(&update);
     // checkforid("55");
     // getid();
     // char c[100] = "Th";
