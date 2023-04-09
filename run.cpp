@@ -154,20 +154,35 @@ int checkdigit(string arr)
 int checkstring(string arr)
 {
     int flag = 0;
+    int l = 1;
     for (char ch : arr)
     {
-
-        for (int i = 0; i < arr.length(); i++)
+        if(l==1)
         {
-            if (isdigit(ch) == true)
-            {
-                flag = 1;
-            }
-            else if (!((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)))
+            if(!isupper(ch))
             {
                 flag = 1;
             }
         }
+        else
+        {
+            for (int i = 0; i < arr.length(); i++)
+            {
+                if (isdigit(ch) == true)
+                {
+                    flag = 1;
+                }
+                else if (!((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)))
+                {
+                    flag = 1;
+                }
+                else if(!islower(ch))
+                {
+                    flag = 1;
+                }
+            }
+        }
+        l++;
     }
     return flag;
 }
@@ -506,7 +521,7 @@ void add()
         {
             color("red");
             gotoxy(10, 22);
-            cout << "No digits/symbols/spaces allowed";
+            cout << "No digits/symbols/spaces allowed & first letter should be in capital";
             o.fname = "";
             o.~contact();
             Sleep(3000);
@@ -535,7 +550,7 @@ void add()
                 {
                     color("red");
                     gotoxy(10, 22);
-                    cout << "No digits/symbols/spaces allowed";
+                    cout << "No digits/symbols/spaces allowed & first letter should be in capital";
                     o.lname = "";
                     o.~contact();
                     Sleep(3000);
@@ -615,7 +630,7 @@ void add()
                                 {
                                     color("red");
                                     gotoxy(10, 22);
-                                    cout << "No digits/symbols/spaces allowed";
+                                    cout << "No digits/symbols/spaces allowed & first letter should be in capital";
                                     o.place = "";
                                     o.~contact();
                                     Sleep(3000);
@@ -645,6 +660,7 @@ void add()
 
 // UPDATE SECTION----------------------------------------------------------------------------------
 void update();
+
 // update first name
 void upfname()
 {
@@ -712,7 +728,7 @@ void upfname()
             {
                 color("red");
                 gotoxy(10, 22);
-                cout << "No digits/symbols/spaces allowed";
+                cout << "No digits/symbols/spaces allowed & first letter should be in capital";
                 name = "";
                 Sleep(3000);
                 upfname();
@@ -811,7 +827,7 @@ void uplname()
             {
                 color("red");
                 gotoxy(10, 22);
-                cout << "No digits/symbols/spaces allowed";
+                cout << "No digits/symbols/spaces allowed & first letter should be in capital";
                 name = "";
                 Sleep(3000);
                 uplname();
@@ -1028,7 +1044,7 @@ void upplace()
             {
                 color("red");
                 gotoxy(10, 22);
-                cout << "No digits/symbols/spaces allowed";
+                cout << "No digits/symbols/spaces allowed & first letter should be in capital";
                 name = "";
                 Sleep(3000);
                 upplace();
@@ -1307,7 +1323,7 @@ void showall()
     }
     // cout<<"Out";
     rfile.close();
-    //option
+    // option
     back(&showall);
 }
 
