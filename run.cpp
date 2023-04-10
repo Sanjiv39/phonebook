@@ -157,9 +157,9 @@ int checkstring(string arr)
     int l = 1;
     for (char ch : arr)
     {
-        if(l==1)
+        if (l == 1)
         {
-            if(!isupper(ch))
+            if (!isupper(ch))
             {
                 flag = 1;
             }
@@ -176,7 +176,7 @@ int checkstring(string arr)
                 {
                     flag = 1;
                 }
-                else if(!islower(ch))
+                else if (!islower(ch))
                 {
                     flag = 1;
                 }
@@ -505,153 +505,124 @@ void add()
     gotoxy(15, 12);
     cout << "Enter first name : ";
     // fflush(stdin);
-
-    if (o.fname.length() > 0)
+    color("green");
+    getline(cin, o.fname, '\n');
+    // while ((getchar()) != '\n');
+    // cout << o.fname;
+    // cout << o.fname;
+    if (checkstring(o.fname) == 1)
     {
-        cout << o.fname;
+        color("red");
+        gotoxy(10, 22);
+        cout << "No digits/symbols/spaces allowed & first letter should be in capital";
+        o.fname = "";
+        o.~contact();
+        Sleep(3000);
+        add();
     }
     else
     {
-        color("green");
-        getline(cin, o.fname, '\n');
+        o.fname = trim(o.fname);
         // while ((getchar()) != '\n');
-        // cout << o.fname;
-        // cout << o.fname;
-        if (checkstring(o.fname) == 1)
+        // Now enter last name
+        gotoxy(15, 14);
+        cout << "Enter last name : ";
+        // fflush(stdin);
+        fflush(stdin);
+        color("green");
+        getline(cin, o.lname, '\n');
+        fflush(stdin);
+        // while ((getchar()) !='\n');
+        if (checkstring(o.lname) == 1)
         {
             color("red");
             gotoxy(10, 22);
             cout << "No digits/symbols/spaces allowed & first letter should be in capital";
-            o.fname = "";
+            o.lname = "";
             o.~contact();
             Sleep(3000);
             add();
         }
         else
         {
-            o.fname = trim(o.fname);
-            // while ((getchar()) != '\n');
-            // Now enter last name
-            gotoxy(15, 14);
-            cout << "Enter last name : ";
+            o.lname = trim(o.lname);
+            // Now enter phone no
+            gotoxy(15, 16);
+            cout << "Enter your phone number : ";
             // fflush(stdin);
-            if (o.lname.length() > 0)
+
+            fflush(stdin);
+            color("green");
+            getline(cin, o.phone, '\n');
+            fflush(stdin);
+
+            // while ((getchar()) != '\n')
+
+            if (checkdigit(o.phone) == 0)
             {
-                cout << o.lname;
+                color("red");
+                gotoxy(10, 22);
+                cout << "Enter only digits";
+                o.phone = "";
+                o.~contact();
+                Sleep(3000);
+                add();
+            }
+            else if (o.phone.length() != 10)
+            {
+                color("red");
+                gotoxy(10, 22);
+                cout << "Enter 10 digits only";
+                o.phone = "";
+                o.~contact();
+                Sleep(3000);
+                add();
+            }
+            else if (checknumber(o.phone) == 1)
+            {
+                color("red");
+                gotoxy(10, 22);
+                cout << "Number already exists";
+                o.phone = "";
+                o.~contact();
+                Sleep(3000);
+                add();
             }
             else
             {
+                o.phone = trim(o.phone);
+                // Now enter place
+                gotoxy(15, 18);
+                cout << "Enter place : ";
+                // fflush(stdin);
+
                 fflush(stdin);
                 color("green");
-                getline(cin, o.lname, '\n');
+                getline(cin, o.place, '\n');
                 fflush(stdin);
-                // while ((getchar()) !='\n');
-                if (checkstring(o.lname) == 1)
+                // while ((getchar()) != '\n');
+                if (checkstring(o.place) == 1)
                 {
                     color("red");
                     gotoxy(10, 22);
                     cout << "No digits/symbols/spaces allowed & first letter should be in capital";
-                    o.lname = "";
+                    o.place = "";
                     o.~contact();
                     Sleep(3000);
                     add();
                 }
                 else
                 {
-                    o.lname = trim(o.lname);
-                    // Now enter phone no
-                    gotoxy(15, 16);
-                    cout << "Enter your phone number : ";
-                    // fflush(stdin);
-
-                    if (o.phone.length() == 10)
-                    {
-                        cout << o.phone;
-                    }
-                    else
-                    {
-                        fflush(stdin);
-                        color("green");
-                        getline(cin, o.phone, '\n');
-                        fflush(stdin);
-
-                        // while ((getchar()) != '\n')
-
-                        if (checkdigit(o.phone) == 0)
-                        {
-                            color("red");
-                            gotoxy(10, 22);
-                            cout << "Enter only digits";
-                            o.phone = "";
-                            o.~contact();
-                            Sleep(3000);
-                            add();
-                        }
-                        else if (o.phone.length() != 10)
-                        {
-                            color("red");
-                            gotoxy(10, 22);
-                            cout << "Enter 10 digits only";
-                            o.phone = "";
-                            o.~contact();
-                            Sleep(3000);
-                            add();
-                        }
-                        else if (checknumber(o.phone) == 1)
-                        {
-                            color("red");
-                            gotoxy(10, 22);
-                            cout << "Number already exists";
-                            o.phone = "";
-                            o.~contact();
-                            Sleep(3000);
-                            add();
-                        }
-                        else
-                        {
-                            o.phone = trim(o.phone);
-                            // Now enter place
-                            gotoxy(15, 18);
-                            cout << "Enter place : ";
-                            // fflush(stdin);
-                            if (o.place.length() > 0)
-                            {
-                                cout << o.place;
-                                // while ((getchar()) != '\n')
-                            }
-                            else
-                            {
-                                fflush(stdin);
-                                color("green");
-                                getline(cin, o.place, '\n');
-                                fflush(stdin);
-                                // while ((getchar()) != '\n');
-                                if (checkstring(o.place) == 1)
-                                {
-                                    color("red");
-                                    gotoxy(10, 22);
-                                    cout << "No digits/symbols/spaces allowed & first letter should be in capital";
-                                    o.place = "";
-                                    o.~contact();
-                                    Sleep(3000);
-                                    add();
-                                }
-                                else
-                                {
-                                    o.place = trim(o.place);
-                                    fflush(stdin);
-                                    fstream wfile("main.txt", ios::app);
-                                    wfile << getid() << " " << o.fname << " " << o.lname << " " << o.phone << " " << o.place << endl;
-                                    wfile.close();
-                                    o.~contact();
-                                    fflush(stdin);
-                                    Sleep(3000);
-                                    // option
-                                    back(&add);
-                                }
-                            }
-                        }
-                    }
+                    o.place = trim(o.place);
+                    fflush(stdin);
+                    fstream wfile("main.txt", ios::app);
+                    wfile << getid() << " " << o.fname << " " << o.lname << " " << o.phone << " " << o.place << endl;
+                    wfile.close();
+                    o.~contact();
+                    fflush(stdin);
+                    Sleep(3000);
+                    // option
+                    back(&add);
                 }
             }
         }
@@ -1058,7 +1029,7 @@ void upplace()
                 phone = trim(phone);
                 int id = checkforid(phone);
                 // Now open main as read and temp as write mode
-                createtemp(id, 3, name);
+                createtemp(id, 5, name);
                 storefile();
                 // cout<<"Out";
                 // fflush(stdin);
