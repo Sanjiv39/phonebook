@@ -157,31 +157,18 @@ int checkstring(string arr)
     int l = 1;
     for (char ch : arr)
     {
-        if (l == 1)
+        for (int i = 0; i < arr.length(); i++)
         {
-            if (!isupper(ch))
+            if (isdigit(ch) == true)
+            {
+                flag = 1;
+            }
+            else if (!((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)))
             {
                 flag = 1;
             }
         }
-        else
-        {
-            for (int i = 0; i < arr.length(); i++)
-            {
-                if (isdigit(ch) == true)
-                {
-                    flag = 1;
-                }
-                else if (!((ch >= 48 && ch <= 57) || (ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122)))
-                {
-                    flag = 1;
-                }
-                else if (!islower(ch))
-                {
-                    flag = 1;
-                }
-            }
-        }
+
         l++;
     }
     return flag;
@@ -191,16 +178,18 @@ int checkstring(string arr)
 string trim(string arr)
 {
     string repl = "";
-    int j = 0;
+    int j = 1;
     for (char ch : arr)
     {
-        if (ch == ' ')
+        if (j == 1)
         {
+            repl += toupper(ch);
         }
         else
         {
             repl += ch;
         }
+        j++;
     }
     // cout<<repl;
     return repl;
@@ -514,9 +503,9 @@ void add()
     {
         color("red");
         gotoxy(10, 22);
-        cout << "No digits/symbols/spaces allowed & first letter should be in capital";
+        cout << "No digits/symbols/spaces allowed";
         o.fname = "";
-        o.~contact();
+        // o.~contact();
         Sleep(3000);
         add();
     }
@@ -537,9 +526,9 @@ void add()
         {
             color("red");
             gotoxy(10, 22);
-            cout << "No digits/symbols/spaces allowed & first letter should be in capital";
+            cout << "No digits/symbols/spaces allowed";
             o.lname = "";
-            o.~contact();
+            // o.~contact();
             Sleep(3000);
             add();
         }
@@ -605,7 +594,7 @@ void add()
                 {
                     color("red");
                     gotoxy(10, 22);
-                    cout << "No digits/symbols/spaces allowed & first letter should be in capital";
+                    cout << "No digits/symbols/spaces allowed";
                     o.place = "";
                     o.~contact();
                     Sleep(3000);
@@ -683,51 +672,44 @@ void upfname()
         cout << "Enter new first name : ";
         // fflush(stdin);
 
-        if (name.length() > 0)
+        color("green");
+        getline(cin, name, '\n');
+        fflush(stdin);
+        // while ((getchar()) != '\n');
+        // cout << o.fname;
+        // cout << o.fname;
+        if (checkstring(name) == 1)
         {
-            cout << name;
+            color("red");
+            gotoxy(10, 22);
+            cout << "No digits/symbols/spaces allowed";
+            name = "";
+            Sleep(3000);
+            upfname();
         }
         else
         {
-            color("green");
-            getline(cin, name, '\n');
-            fflush(stdin);
+            name = trim(name);
             // while ((getchar()) != '\n');
-            // cout << o.fname;
-            // cout << o.fname;
-            if (checkstring(name) == 1)
-            {
-                color("red");
-                gotoxy(10, 22);
-                cout << "No digits/symbols/spaces allowed & first letter should be in capital";
-                name = "";
-                Sleep(3000);
-                upfname();
-            }
-            else
-            {
-                name = trim(name);
-                // while ((getchar()) != '\n');
-                // Now enter new last name
-                // while ((getchar()) !='\n');
-                phone = trim(phone);
-                int id = checkforid(phone);
-                // Now open main as read and temp as write mode
-                createtemp(id, 2, name);
-                storefile();
-                // cout<<"Out";
-                // fflush(stdin);
-                // fflush(stdout);
-                // Sleep(500);
-                // contact o;
-                // system("pause");
-                // createtemp(id, 3, name2);
-                // storefile();
-                // fflush(stdin);
-                Sleep(1000);
-                // option
-                back(&upfname);
-            }
+            // Now enter new last name
+            // while ((getchar()) !='\n');
+            phone = trim(phone);
+            int id = checkforid(phone);
+            // Now open main as read and temp as write mode
+            createtemp(id, 2, name);
+            storefile();
+            // cout<<"Out";
+            // fflush(stdin);
+            // fflush(stdout);
+            // Sleep(500);
+            // contact o;
+            // system("pause");
+            // createtemp(id, 3, name2);
+            // storefile();
+            // fflush(stdin);
+            Sleep(1000);
+            // option
+            back(&upfname);
         }
     }
 }
@@ -782,51 +764,44 @@ void uplname()
         gotoxy(15, 12);
         cout << "Enter new last name : ";
         // fflush(stdin);
-        if (name.length() > 0)
+        color("green");
+        getline(cin, name, '\n');
+        fflush(stdin);
+        // while ((getchar()) != '\n');
+        // cout << o.fname;
+        // cout << o.fname;
+        if (checkstring(name) == 1)
         {
-            cout << name;
+            color("red");
+            gotoxy(10, 22);
+            cout << "No digits/symbols/spaces allowed";
+            name = "";
+            Sleep(3000);
+            uplname();
         }
         else
         {
-            color("green");
-            getline(cin, name, '\n');
-            fflush(stdin);
+            name = trim(name);
             // while ((getchar()) != '\n');
-            // cout << o.fname;
-            // cout << o.fname;
-            if (checkstring(name) == 1)
-            {
-                color("red");
-                gotoxy(10, 22);
-                cout << "No digits/symbols/spaces allowed & first letter should be in capital";
-                name = "";
-                Sleep(3000);
-                uplname();
-            }
-            else
-            {
-                name = trim(name);
-                // while ((getchar()) != '\n');
-                // Now enter new last name
-                // while ((getchar()) !='\n');
-                phone = trim(phone);
-                int id = checkforid(phone);
-                // Now open main as read and temp as write mode
-                createtemp(id, 3, name);
-                storefile();
-                // cout<<"Out";
-                // fflush(stdin);
-                // fflush(stdout);
-                // Sleep(500);
-                // contact o;
-                // system("pause");
-                // createtemp(id, 3, name2);
-                // storefile();
-                // fflush(stdin);
-                Sleep(1000);
-                // option
-                back(&uplname);
-            }
+            // Now enter new last name
+            // while ((getchar()) !='\n');
+            phone = trim(phone);
+            int id = checkforid(phone);
+            // Now open main as read and temp as write mode
+            createtemp(id, 3, name);
+            storefile();
+            // cout<<"Out";
+            // fflush(stdin);
+            // fflush(stdout);
+            // Sleep(500);
+            // contact o;
+            // system("pause");
+            // createtemp(id, 3, name2);
+            // storefile();
+            // fflush(stdin);
+            Sleep(1000);
+            // option
+            back(&uplname);
         }
     }
 }

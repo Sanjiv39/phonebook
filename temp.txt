@@ -1,6 +1,5 @@
 1 Ashwin Giri 7789012980 Thane 
 2 Shubham Yadav 9850625387 Thane 
 3 Ashwin Giri 1923883289 Bhiwandi 
-4 Manisha Kushwaha 6939485969 Murbad 
+4 manish Kushwaha 6939485969 Murbad 
 5 Manoj Gaud 8373849473 Rewa 
-
